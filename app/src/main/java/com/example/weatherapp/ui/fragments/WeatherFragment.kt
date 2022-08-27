@@ -5,13 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.databinding.FragmentWeatherBinding
+import com.example.weatherapp.ui.adapters.WeatherAdapter
 
 class WeatherFragment : Fragment() {
 
+    private val POS_ARG = "position"
+
     private var _binding: FragmentWeatherBinding? = null
     private val binding get() = _binding
-    private val POS_ARG = "position"
+
+    private lateinit var weatherAdapter: WeatherAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +36,14 @@ class WeatherFragment : Fragment() {
             binding!!.someText.text = (getInt(POS_ARG) + 1).toString()
         }
 
+        setupRecyclerView()
+
+    }
+
+    private fun setupRecyclerView() = binding!!.weatherRecyclerView.apply {
+        weatherAdapter = WeatherAdapter(listOf())
+        adapter = weatherAdapter
+        layoutManager = LinearLayoutManager(context)
     }
 
 
