@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.App.CustomDotsIndicator" parent="Theme.MaterialComponents">
+        <item name="dotsColor">?attr/colorPrimaryVariant</item>
+        <item name="selectedDotColor">?attr/colorPrimary</item>
+        <item name="android:padding">5dp</item>
+        <item name="progressMode">false</item>
+    </style>
+</resources>
