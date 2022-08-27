@@ -11,7 +11,6 @@
         style="@style/Theme.App.CustomDotsIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorOnPrimary"
         app:layout_constraintBottom_toTopOf="@id/view_pager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
