@@ -4,14 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.weatherapp.databinding.ActivityMainBinding
-import com.example.weatherapp.ui.adapters.WeatherAdapter
+import com.example.weatherapp.ui.adapters.WeatherPagerAdapter
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var viewPagerAdapter: WeatherAdapter
+    private lateinit var viewPagerAdapter: WeatherPagerAdapter
     private lateinit var viewPager2: ViewPager2
     private lateinit var dotsIndicator: DotsIndicator
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupViewPagerAdapter() {
         viewPager2 = binding.viewPager
-        viewPagerAdapter = WeatherAdapter(this)
+        viewPagerAdapter = WeatherPagerAdapter(this)
         viewPager2.adapter = viewPagerAdapter
         dotsIndicator = binding.dotsIndicator
         dotsIndicator.attachTo(viewPager2)

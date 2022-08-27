@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.weatherapp.MainActivity
 import com.example.weatherapp.ui.fragments.WeatherFragment
 
-class WeatherAdapter(activity: MainActivity) : FragmentStateAdapter(activity) {
+class WeatherPagerAdapter(activity: MainActivity) : FragmentStateAdapter(activity) {
 
     private val POS_ARG = "position"
 
