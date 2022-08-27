@@ -6,7 +6,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.ui.adapters.WeatherPagerAdapter
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
