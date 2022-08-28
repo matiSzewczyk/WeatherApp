@@ -3,11 +3,11 @@ package com.example.weatherapp.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherapp.data.models.weather.Weather
+import com.example.weatherapp.data.models.weather.Forecast
 import com.example.weatherapp.databinding.WeatherItemBinding
 
 class WeatherAdapter(
-    private val weather: List<Weather>
+    private val weather: List<Forecast>
 ) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
     inner class WeatherViewHolder(
@@ -26,8 +26,8 @@ class WeatherAdapter(
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         holder.binding.apply {
-            itemDate.text = weather[position].forecast[position].date
-            itemTemp.text = weather[position].forecast[position].max_temp_c.toString()
+            itemDate.text = weather[position].date
+            itemTemp.text = weather[position].max_temp_c.toString()
         }
     }
 
