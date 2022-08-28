@@ -1,8 +1,11 @@
 package com.example.weatherapp.ui.adapters
 
+import android.content.res.Resources
+import android.provider.Settings.System.getString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.R
 import com.example.weatherapp.data.models.weather.Forecast
 import com.example.weatherapp.databinding.WeatherItemBinding
 
@@ -27,7 +30,11 @@ class WeatherAdapter(
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         holder.binding.apply {
             itemDate.text = weather[position].date
-            itemTemp.text = weather[position].max_temp_c.toString()
+
+            itemTemp.text = holder.itemView.context.getString(
+                R.string.temperature,
+                weather[position].max_temp_c.toString()
+            )
         }
     }
 

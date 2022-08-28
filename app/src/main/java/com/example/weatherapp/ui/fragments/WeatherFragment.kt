@@ -13,9 +13,10 @@ import com.example.weatherapp.ui.adapters.WeatherAdapter
 import com.example.weatherapp.ui.viewmodels.WeatherViewModel
 import kotlinx.coroutines.flow.collectLatest
 
+private const val POS_ARG = "position"
+
 class WeatherFragment : Fragment() {
 
-    private val POS_ARG = "position"
 
     private var _binding: FragmentWeatherBinding? = null
     private val binding get() = _binding
@@ -59,8 +60,6 @@ class WeatherFragment : Fragment() {
     private fun setupRecyclerView() = binding!!.weatherRecyclerView.apply {
         val instancePos = arguments.takeIf {
             it!!.containsKey(POS_ARG)
-        }?.apply {
-            binding!!.someText.text = (getInt(POS_ARG) + 1).toString()
         }
         weatherAdapter = WeatherAdapter(
             viewModel.uiState.value.forecast[instancePos!!.getInt(POS_ARG)]
