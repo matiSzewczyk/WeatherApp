@@ -1,10 +1,9 @@
 package com.example.weatherapp.ui.adapters
 
-import android.content.res.Resources
-import android.provider.Settings.System.getString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.data.models.weather.Forecast
 import com.example.weatherapp.databinding.WeatherItemBinding
@@ -35,6 +34,10 @@ class WeatherAdapter(
                 R.string.temperature,
                 weather[position].max_temp_c.toString()
             )
+            Glide.with(itemIcon.context)
+                .load("https:" + weather[position].icon_url)
+                .override(150, 150)
+                .into(itemIcon)
         }
     }
 
