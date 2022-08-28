@@ -45,6 +45,10 @@ class WeatherFragment : Fragment() {
             viewModel.uiState.collectLatest {
                 when (it.state) {
                     is WeatherViewModel.UiState.WeatherUiState.Success -> {
+                        binding!!.locationText.text =
+                            viewModel.uiState.value.locations[requireArguments().getInt(
+                                POS_ARG
+                            )]
                         weatherAdapter.notifyDataSetChanged()
                     }
                     is WeatherViewModel.UiState.WeatherUiState.IsLoading -> {

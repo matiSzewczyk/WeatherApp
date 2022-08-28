@@ -30,14 +30,38 @@ class WeatherAdapter(
         holder.binding.apply {
             itemDate.text = weather[position].date
 
-            itemTemp.text = holder.itemView.context.getString(
+            itemAvgTemp.text = holder.itemView.context.getString(
                 R.string.temperature,
-                weather[position].max_temp_c.toString()
+                weather[position].avg_temp_c.toString()
             )
             Glide.with(itemIcon.context)
                 .load("https:" + weather[position].icon_url)
                 .override(150, 150)
                 .into(itemIcon)
+
+            itemMaxTemp.text = holder.itemView.context.getString(
+                R.string.max_temperature,
+                weather[position].max_temp_c.toString()
+            )
+
+            itemMinTemp.text = holder.itemView.context.getString(
+                R.string.min_temperature,
+                weather[position].min_temp_c.toString()
+            )
+
+            itemMaxWind.text = holder.itemView.context.getString(
+                R.string.max_wind,
+                weather[position].max_wind_kph.toString()
+            )
+
+            itemCondition.text = weather[position].condition
+
+            itemChanceToRain.text = holder.itemView.context.getString(
+                R.string.max_wind,
+                weather[position].chance_of_rain.toString()
+            )
+            itemSunriseTime.text = weather[position].sunrise
+            itemSunsetTime.text = weather[position].sunset
         }
     }
 
