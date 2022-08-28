@@ -7,14 +7,24 @@ import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.data.models.weather.Forecast
 import com.example.weatherapp.databinding.WeatherItemBinding
+import com.example.weatherapp.utils.CustomClickInterface
 
 class WeatherAdapter(
-    private val weather: List<Forecast>
+    private val weather: List<Forecast>,
+    private val customClickListener: CustomClickInterface
 ) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
     inner class WeatherViewHolder(
         val binding: WeatherItemBinding
-    ) : RecyclerView.ViewHolder(binding.root)
+    ) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            apply {
+                itemView.setOnClickListener {
+                    customClickListener.onClickListener(binding.expandedLayout)
+                }
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         return WeatherViewHolder(

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,11 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.databinding.FragmentWeatherBinding
 import com.example.weatherapp.ui.adapters.WeatherAdapter
 import com.example.weatherapp.ui.viewmodels.WeatherViewModel
+import com.example.weatherapp.utils.CustomClickInterface
 import kotlinx.coroutines.flow.collectLatest
 
 private const val POS_ARG = "position"
 
-class WeatherFragment : Fragment() {
+class WeatherFragment : Fragment(), CustomClickInterface {
 
 
     private var _binding: FragmentWeatherBinding? = null
@@ -66,7 +68,8 @@ class WeatherFragment : Fragment() {
             it!!.containsKey(POS_ARG)
         }
         weatherAdapter = WeatherAdapter(
-            viewModel.uiState.value.forecast[instancePos!!.getInt(POS_ARG)]
+            viewModel.uiState.value.forecast[instancePos!!.getInt(POS_ARG)],
+            this@WeatherFragment
         )
         adapter = weatherAdapter
         layoutManager = LinearLayoutManager(context)
@@ -76,5 +79,11 @@ class WeatherFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClickListener(expandedLayout: ConstraintLayout) {
+        expandedLayout.visibility =
+            if (expandedLayout.visibility == View.GONE)
+                View.VISIBLE else View.GONE
     }
 }
