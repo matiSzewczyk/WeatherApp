@@ -2,7 +2,7 @@ package com.example.weatherapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherapp.data.models.sources.WeatherRepository
+import com.example.weatherapp.data.sources.WeatherRepository
 import com.example.weatherapp.data.models.weather.Forecast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,6 +27,15 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
+    init {
+        viewModelScope.launch {
+            repository.saveLocation("London")
+            repository.saveLocation("Spytkowice")
+            val locations = repository.getLocations()
+            println("locations: ${locations[0].location}")
+            println("locations: ${locations[1].location}")
+        }
+    }
 
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> get() = _uiState.asStateFlow()

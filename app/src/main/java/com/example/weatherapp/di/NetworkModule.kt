@@ -1,8 +1,9 @@
 package com.example.weatherapp.di
 
-import com.example.weatherapp.data.models.sources.WeatherApi
-import com.example.weatherapp.data.models.sources.WeatherRepository
-import com.example.weatherapp.data.models.sources.WeatherRepositoryImpl
+import com.example.weatherapp.data.sources.WeatherApi
+import com.example.weatherapp.data.sources.WeatherDAO
+import com.example.weatherapp.data.sources.WeatherRepository
+import com.example.weatherapp.data.sources.WeatherRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +29,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideWeatherRepository(weatherApi: WeatherApi): WeatherRepository {
-        return WeatherRepositoryImpl(weatherApi)
+    fun provideWeatherRepository(weatherApi: WeatherApi, weatherDAO: WeatherDAO): WeatherRepository {
+        return WeatherRepositoryImpl(weatherApi, weatherDAO)
     }
 }

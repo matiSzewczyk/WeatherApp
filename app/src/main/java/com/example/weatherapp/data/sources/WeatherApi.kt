@@ -1,4 +1,4 @@
-package com.example.weatherapp.data.models.sources
+package com.example.weatherapp.data.sources
 
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.data.models.weather.Weather
