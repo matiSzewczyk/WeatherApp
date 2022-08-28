@@ -18,8 +18,8 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveLocation(location: String) {
-        weatherDAO.saveLocation(Locations(location = location))
+    override suspend fun saveLocation(location: Locations) {
+        weatherDAO.saveLocation(Locations(location = location.location))
     }
 
     override suspend fun getLocations(): List<Locations> {

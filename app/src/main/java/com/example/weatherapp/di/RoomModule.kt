@@ -22,7 +22,9 @@ class RoomModule {
             appContext,
             WeatherDatabase::class.java,
             "WeatherDb"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides

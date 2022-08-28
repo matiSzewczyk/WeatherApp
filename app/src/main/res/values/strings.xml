@@ -5,4 +5,7 @@
     <string name="min_temperature">Min temperature: %1$s\u2103</string>
     <string name="max_wind">Max wind: %1$skm\h</string>
     <string name="chance_to_rain">Chance to rain: %1$s %</string>
+    <string name="add_new_location">Add new location</string>
+    <string name="cancel">cancel</string>
+    <string name="confirm">confirm</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.sources.WeatherRepository
 import com.example.weatherapp.data.models.weather.Forecast
+import com.example.weatherapp.data.models.weatherdb.Locations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,21 +27,28 @@ class WeatherViewModel @Inject constructor(
         sealed class WeatherUiState {
             object Success : WeatherUiState()
             object IsLoading : WeatherUiState()
+            object Empty : WeatherUiState()
         }
     }
 
     init {
         viewModelScope.launch {
             grabLocationsFromDatabase()
-            getForecast()
         }
     }
 
     private suspend fun grabLocationsFromDatabase() {
         val locations = repository.getLocations()
-
-        locations.map {
-            _uiState.value.locations.add(it.location!!)
+        if (locations.isEmpty()) {
+            _uiState.update {
+                it.copy(state = UiState.WeatherUiState.Empty)
+            }
+        } else {
+            _uiState.value.locations.clear()
+            locations.map {
+                _uiState.value.locations.add(it.location!!)
+            }
+            getForecast()
         }
     }
 
@@ -48,6 +56,9 @@ class WeatherViewModel @Inject constructor(
     val uiState: StateFlow<UiState> get() = _uiState.asStateFlow()
 
     private suspend fun getForecast() = viewModelScope.launch {
+        _uiState.update {
+            it.copy(state=UiState.WeatherUiState.IsLoading)
+        }
 
         uiState.value.locations.forEachIndexed { index, string ->
             val response = repository.getForecast(string)
@@ -67,6 +78,13 @@ class WeatherViewModel @Inject constructor(
                     "getForecast: ${response.errorBody()?.string()}"
                 )
             }
+        }
+    }
+
+    fun addLocation(location: String) {
+        viewModelScope.launch {
+            repository.saveLocation(Locations(location = location))
+            grabLocationsFromDatabase()
         }
     }
 }

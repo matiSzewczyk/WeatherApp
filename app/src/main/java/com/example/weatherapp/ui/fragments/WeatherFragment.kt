@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentWeatherBinding
 import com.example.weatherapp.ui.adapters.WeatherAdapter
 import com.example.weatherapp.ui.viewmodels.WeatherViewModel
@@ -17,8 +18,7 @@ import kotlinx.coroutines.flow.collectLatest
 
 private const val POS_ARG = "position"
 
-class WeatherFragment : Fragment(), CustomClickInterface {
-
+class WeatherFragment : Fragment(), CustomClickInterface, View.OnClickListener {
 
     private var _binding: FragmentWeatherBinding? = null
     private val binding get() = _binding
@@ -39,9 +39,9 @@ class WeatherFragment : Fragment(), CustomClickInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         setupRecyclerView()
+
+        binding!!.addLocationButton.setOnClickListener(this)
 
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collectLatest {
@@ -61,6 +61,11 @@ class WeatherFragment : Fragment(), CustomClickInterface {
             }
         }
 
+    }
+
+    private fun showDialogFragment() {
+        val dialog = NewLocationDialogFragment()
+        dialog.show(childFragmentManager, "show")
     }
 
     private fun setupRecyclerView() = binding!!.weatherRecyclerView.apply {
@@ -85,5 +90,13 @@ class WeatherFragment : Fragment(), CustomClickInterface {
         expandedLayout.visibility =
             if (expandedLayout.visibility == View.GONE)
                 View.VISIBLE else View.GONE
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.add_location_button -> {
+                showDialogFragment()
+            }
+        }
     }
 }
