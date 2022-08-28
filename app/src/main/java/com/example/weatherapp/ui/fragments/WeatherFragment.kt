@@ -62,7 +62,9 @@ class WeatherFragment : Fragment() {
         }?.apply {
             binding!!.someText.text = (getInt(POS_ARG) + 1).toString()
         }
-        weatherAdapter = WeatherAdapter(viewModel.uiState.value.forecast[instancePos!!.getInt(POS_ARG)])
+        weatherAdapter = WeatherAdapter(
+            viewModel.uiState.value.forecast[instancePos!!.getInt(POS_ARG)]
+        )
         adapter = weatherAdapter
         layoutManager = LinearLayoutManager(context)
     }

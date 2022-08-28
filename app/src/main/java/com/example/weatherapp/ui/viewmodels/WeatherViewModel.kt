@@ -1,5 +1,6 @@
 package com.example.weatherapp.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.data.sources.WeatherRepository
@@ -19,6 +20,7 @@ class WeatherViewModel @Inject constructor(
 
     data class UiState(
         val forecast: MutableList<MutableList<Forecast>> = mutableListOf(mutableListOf()),
+        val locations: MutableList<String> = mutableListOf(),
         val state: WeatherUiState? = null
     ) {
         sealed class WeatherUiState {
@@ -29,26 +31,41 @@ class WeatherViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            repository.saveLocation("London")
-            repository.saveLocation("Spytkowice")
-            val locations = repository.getLocations()
-            println("locations: ${locations[0].location}")
-            println("locations: ${locations[1].location}")
+            grabLocationsFromDatabase()
+            getForecast()
+        }
+    }
+
+    private suspend fun grabLocationsFromDatabase() {
+        val locations = repository.getLocations()
+
+        locations.map {
+            _uiState.value.locations.add(it.location!!)
         }
     }
 
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> get() = _uiState.asStateFlow()
 
-    suspend fun getForecast() = viewModelScope.launch {
-        val response = repository.getForecast("london")
+    private suspend fun getForecast() = viewModelScope.launch {
 
-        if (response.isSuccessful) {
-            response.body()?.forecast?.map {
-                _uiState.value.forecast[0].add(it)
-            }
-            _uiState.update {
-                it.copy(state = UiState.WeatherUiState.Success)
+        uiState.value.locations.forEachIndexed { index, string ->
+            val response = repository.getForecast(string)
+            if (response.isSuccessful) {
+                if (_uiState.value.forecast.size <= index) {
+                    _uiState.value.forecast.add(mutableListOf())
+                }
+                response.body()?.forecast?.map { forecast ->
+                    _uiState.value.forecast[index].add(forecast)
+                }
+                _uiState.update { uiState ->
+                    uiState.copy(state = UiState.WeatherUiState.Success)
+                }
+            } else {
+                Log.e(
+                    "WeatherViewModel",
+                    "getForecast: ${response.errorBody()?.string()}"
+                )
             }
         }
     }

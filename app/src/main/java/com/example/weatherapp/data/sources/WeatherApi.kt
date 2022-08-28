@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface WeatherApi {
 
     @Headers("Authorization: Bearer ${BuildConfig.WEATHER_API_TOKEN}")
-    @GET("?days=7")
+    @GET("forecast?days=7")
     suspend fun getForecast(
         @Query("location") location: String
     ): Response<Weather>

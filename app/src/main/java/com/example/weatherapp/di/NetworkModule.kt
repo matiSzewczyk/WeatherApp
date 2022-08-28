@@ -21,7 +21,7 @@ class NetworkModule {
     @Provides
     fun provideWeatherApi(): WeatherApi {
         return Retrofit.Builder()
-            .baseUrl("https://api.m3o.com/v1/weather/forecast/")
+            .baseUrl("https://api.m3o.com/v1/weather/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create()
@@ -29,7 +29,10 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideWeatherRepository(weatherApi: WeatherApi, weatherDAO: WeatherDAO): WeatherRepository {
+    fun provideWeatherRepository(
+        weatherApi: WeatherApi,
+        weatherDAO: WeatherDAO
+    ): WeatherRepository {
         return WeatherRepositoryImpl(weatherApi, weatherDAO)
     }
 }
