@@ -7,7 +7,7 @@ internal class TextFormatterTest {
 
 
     @Test
-    fun `Return capitalized text, returns capital L`() {
+    fun `Capitalize first letter of location, returns capital L`() {
         val result = TextFormatter.capitalizeFirstLetter("london")
 
         assertThat(result[0]).isEqualTo('L')
