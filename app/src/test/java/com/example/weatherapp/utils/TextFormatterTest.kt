@@ -1,0 +1,15 @@
+package com.example.weatherapp.utils
+
+import com.google.common.truth.Truth.assertThat
+import org.junit.Test
+
+internal class TextFormatterTest {
+
+
+    @Test
+    fun `Return capitalized text, returns capital L`() {
+        val result = TextFormatter.capitalizeFirstLetter("london")
+
+        assertThat(result[0]).isEqualTo('L')
+    }
+}

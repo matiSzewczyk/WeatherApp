@@ -2,6 +2,7 @@ package com.example.weatherapp.data.sources
 
 import com.example.weatherapp.data.models.weather.Weather
 import com.example.weatherapp.data.models.weatherdb.Locations
+import com.example.weatherapp.utils.TextFormatter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -19,7 +20,8 @@ class WeatherRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveLocation(location: Locations) {
-        weatherDAO.saveLocation(Locations(location = location.location))
+        val formattedLocation = TextFormatter.capitalizeFirstLetter(location.location!!)
+        weatherDAO.saveLocation(Locations(location = formattedLocation))
     }
 
     override suspend fun getLocations(): List<Locations> {
