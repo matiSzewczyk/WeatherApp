@@ -11,7 +11,7 @@ import javax.inject.Inject
 class WeatherRepositoryImpl @Inject constructor(
     private val weatherApi: WeatherApi,
     private val weatherDAO: WeatherDAO
-) : WeatherRepository{
+) : WeatherRepository {
 
     override suspend fun getForecast(location: String): Response<Weather> {
         return withContext(Dispatchers.IO) {

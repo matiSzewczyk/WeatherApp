@@ -5,7 +5,6 @@ import org.junit.Test
 
 internal class TextFormatterTest {
 
-
     @Test
     fun `Capitalize first letter of location, returns capital L`() {
         val result = TextFormatter.capitalizeFirstLetter("london")

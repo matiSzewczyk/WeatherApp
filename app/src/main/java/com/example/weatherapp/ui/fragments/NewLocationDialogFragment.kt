@@ -21,7 +21,7 @@ class NewLocationDialogFragment : DialogFragment(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setStyle(
             STYLE_NORMAL,
-            com.google.android.material.R.style.Theme_MaterialComponents_Light_Dialog_MinWidth
+            com.google.android.material.R.style.Base_Theme_AppCompat_Dialog_MinWidth
         )
     }
 
