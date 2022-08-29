@@ -88,8 +88,7 @@ class WeatherFragment : Fragment(), CustomClickInterface, View.OnClickListener {
 
     override fun onClickListener(expandedLayout: ConstraintLayout) {
         expandedLayout.visibility =
-            if (expandedLayout.visibility == View.GONE)
-                View.VISIBLE else View.GONE
+            if (expandedLayout.visibility == View.GONE) View.VISIBLE else View.GONE
     }
 
     override fun onClick(v: View?) {
