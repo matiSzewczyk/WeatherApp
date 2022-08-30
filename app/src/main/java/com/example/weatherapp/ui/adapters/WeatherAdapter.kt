@@ -68,9 +68,9 @@ class WeatherAdapter(
             itemCondition.text = weather[position].condition
 
             itemChanceToRain.text = holder.itemView.context.getString(
-                R.string.max_wind,
+                R.string.chance_to_rain,
                 weather[position].chance_of_rain.toString()
-            )
+            ) + "%"
             itemSunriseTime.text = weather[position].sunrise
             itemSunsetTime.text = weather[position].sunset
         }
