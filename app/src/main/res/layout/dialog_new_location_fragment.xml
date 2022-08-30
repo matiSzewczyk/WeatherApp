@@ -24,7 +24,7 @@
         android:textColor="?attr/colorPrimaryVariant"
         android:background="@drawable/edit_text_background"
         android:inputType="textCapSentences"
-        android:padding="6dp"
+        android:paddingStart="14dp"
         android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
