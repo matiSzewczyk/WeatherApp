@@ -11,7 +11,8 @@
 - Saving locations you use frequently
 - Display 7 day weather forecast
 - Detailed information for each day including
-    - max temperature
+    - min/max temperature
+	- wind speeds
     - chance for rain
     - sunset & sunrise times
 
