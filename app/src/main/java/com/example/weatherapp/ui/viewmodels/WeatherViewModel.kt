@@ -31,6 +31,9 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
+    private val _uiState = MutableStateFlow(UiState())
+    val uiState: StateFlow<UiState> get() = _uiState.asStateFlow()
+
     init {
         viewModelScope.launch {
             grabLocationsFromDatabase()
@@ -38,6 +41,9 @@ class WeatherViewModel @Inject constructor(
     }
 
     private suspend fun grabLocationsFromDatabase() {
+        _uiState.update {
+            it.copy(state = UiState.WeatherUiState.IsLoading)
+        }
         val locations = repository.getLocations()
         if (locations.isEmpty()) {
             _uiState.update {
@@ -52,13 +58,7 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
-    private val _uiState = MutableStateFlow(UiState())
-    val uiState: StateFlow<UiState> get() = _uiState.asStateFlow()
-
     private suspend fun getForecast() = viewModelScope.launch {
-        _uiState.update {
-            it.copy(state=UiState.WeatherUiState.IsLoading)
-        }
 
         uiState.value.locations.forEachIndexed { index, string ->
             val response = repository.getForecast(string)
@@ -82,6 +82,9 @@ class WeatherViewModel @Inject constructor(
     }
 
     fun addLocation(location: String) {
+        _uiState.update {
+            it.copy(state = UiState.WeatherUiState.IsLoading)
+        }
         viewModelScope.launch {
             repository.saveLocation(Locations(location = location))
             grabLocationsFromDatabase()

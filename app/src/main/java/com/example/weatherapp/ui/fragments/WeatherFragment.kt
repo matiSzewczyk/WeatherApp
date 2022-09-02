@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -52,9 +53,13 @@ class WeatherFragment : Fragment(), CustomClickInterface, View.OnClickListener {
                                 POS_ARG
                             )]
                         weatherAdapter.notifyDataSetChanged()
+                        binding!!.progressBar.isVisible = false
                     }
                     is WeatherViewModel.UiState.WeatherUiState.IsLoading -> {
-
+                        binding!!.progressBar.isVisible = true
+                    }
+                    is WeatherViewModel.UiState.WeatherUiState.Empty -> {
+                        binding!!.progressBar.isVisible = false
                     }
                     else -> Unit
                 }
