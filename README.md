@@ -15,8 +15,8 @@
 - Detailed information for each day including
   - Min/Max temperatures
   - Wind speeds
-    - Chance for rain
-    - Sunset & sunrise times
+  - Chance for rain
+  - Sunset & sunrise times
 
 ## Screenshots
 
