@@ -1,6 +1,7 @@
 # Weather app
 
 ## Tech stack used in the project
+
 - ROOM database
 - Hilt Dependency Injection
 - View Binding
@@ -8,15 +9,17 @@
 - Retrofit as the REST client
 
 ## Features
-- Saving locations you use frequently
-- Display 7 day weather forecast
+
+- Saving frequently used locations
+- Display a 7 day weather forecast
 - Detailed information for each day including
-    - min/max temperature
-	- wind speeds
-    - chance for rain
-    - sunset & sunrise times
+  - Min/Max temperatures
+  - Wind speeds
+    - Chance for rain
+    - Sunset & sunrise times
 
 ## Screenshots
+
 [<img src="https://imgur.com/GAETXGa.png" width="250">](https://imgur.com/GAETXGa.png)
 [<img src="https://imgur.com/OYoHSIy.png" width="250">](https://imgur.com/OYoHSIy.png)
 [<img src="https://imgur.com/zrfWQAQ.png" width="250">](https://imgur.com/zrfWQAQ.png)
