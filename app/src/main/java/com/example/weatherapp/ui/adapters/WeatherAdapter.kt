@@ -20,7 +20,6 @@ class WeatherAdapter(
         init {
             apply {
                 itemView.setOnClickListener {
-
                     customClickListener.onClickListener(binding.expandedLayout)
                 }
             }
