@@ -20,6 +20,6 @@
 
 ## Screenshots
 
-[<img src="https://imgur.com/GAETXGa.png" width="250">](https://imgur.com/GAETXGa.png)
-[<img src="https://imgur.com/OYoHSIy.png" width="250">](https://imgur.com/OYoHSIy.png)
+[<img src="https://imgur.com/Q6MGqTN.png" width="250">](https://imgur.com/Q6MGqTN.png)
+[<img src="https://imgur.com/3lZ4H5n.png" width="250">](https://imgur.com/3lZ4H5n.png)
 [<img src="https://imgur.com/zrfWQAQ.png" width="250">](https://imgur.com/zrfWQAQ.png)
