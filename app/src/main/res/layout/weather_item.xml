@@ -29,7 +29,7 @@
             tools:text="28.08.2022" />
 
         <TextView
-            android:id="@+id/item_avg_temp"
+            android:id="@+id/item_max_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/item_max_temp"
+            android:id="@+id/item_avg_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
@@ -77,7 +77,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_max_temp"
+            app:layout_constraintTop_toBottomOf="@id/item_avg_temp"
             tools:text="Min temperature: 17°C" />
 
         <TextView

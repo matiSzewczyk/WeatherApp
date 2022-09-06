@@ -42,7 +42,7 @@ class WeatherAdapter(
             itemDate.text = weather[position].date
 
             itemAvgTemp.text = holder.itemView.context.getString(
-                R.string.temperature,
+                R.string.avg_temperature,
                 weather[position].avg_temp_c.toString()
             )
             Glide.with(itemIcon.context)
