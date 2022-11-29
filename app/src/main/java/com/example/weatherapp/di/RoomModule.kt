@@ -28,7 +28,7 @@ class RoomModule {
     }
 
     @Provides
-    fun provideChannelDao(weatherDatabase: WeatherDatabase): WeatherDAO {
+    fun provideWeatherDao(weatherDatabase: WeatherDatabase): WeatherDAO {
         return weatherDatabase.WeatherDao()
     }
 }
